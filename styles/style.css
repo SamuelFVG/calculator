@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+}
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #aaaaaa;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+
+    width: 30%;
+    min-height: 60%;
+    background-color: white;
+}
+#input-box{
+    flex: 1;
+    border: 1px solid black;
+    background-color: blanchedalmond;
+}
+#main-button-container{
+    flex: 2.15;
+    border: 1px solid black;
+    background-color: aliceblue;
+
+    display: flex;
+    flex-direction: column; 
+}
+.horizontal-container{
+    flex: 1;
+
+    display: flex
+}
+.horizontal-container > *{
+    flex: 1;
+}
+
+
