@@ -1,16 +1,25 @@
 const mainContainer = document.getElementById('main-button-container');
 
-for (let i = 0; i < 5; i++) {
+const options =  [
+    ['AC', '←', '^', 'v'],
+    ['1',  '2', '3', '+'],
+    ['4',  '5', '6', '-'],
+    ['7',  '8', '9', '*'],
+    ['0',       '.', '=']
+];
+
+options.forEach(line => {
     const horizontalContainer = document.createElement('div');
     horizontalContainer.classList.add('horizontal-container');
     mainContainer.appendChild(horizontalContainer);
 
-    let ammountOfButtons = (i != 4) ? 4 : 3;
 
-    for (let j = 0; j < ammountOfButtons; j++) {
+    line.forEach(option => {
         const btn = document.createElement('button');
-        btn.classList.add('calculator-button')
-        btn.classList.add('btn');
+        btn.classList.add('calculator-button');
+        btn.textContent = option;
         horizontalContainer.appendChild(btn);
-    }
-}
+    });
+    
+    if (line.length == 3) horizontalContainer.firstChild.style.minWidth = '50%'; // used to make the '0' button get 50% of the space
+});

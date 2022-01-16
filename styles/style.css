@@ -17,7 +17,7 @@ main{
     display: flex;
     flex-direction: column;
 
-    width: 30%;
+    width: 27%;
     min-height: 60%;
     background-color: white;
 }
@@ -27,7 +27,7 @@ main{
     background-color: blanchedalmond;
 }
 #main-button-container{
-    flex: 2.15;
+    flex: 2;
     border: 1px solid black;
     background-color: aliceblue;
 
