@@ -1,12 +1,12 @@
 const display = document.getElementById('display');
 const mainContainer = document.getElementById('main-button-container');
 /*
- 
+    Add keyboard functionality
 */
 
 
 const options =  [
-    ['AC', '←', 'R', '/'],
+    ['C', '←', '!', '/'],
     ['1',  '2', '3', '*'],
     ['4',  '5', '6', '-'],
     ['7',  '8', '9', '+'],
@@ -24,19 +24,19 @@ options.forEach(line => {
         btn.textContent = option;
         horizontalContainer.appendChild(btn);
 
-        btn.addEventListener('click', getInput);
+        btn.addEventListener('click', event => getInput(event.target.textContent));
     });
     
-    if (line.length == 3) horizontalContainer.firstChild.style.minWidth = '50%'; // used to make the '0' button get 50% of the space
+    if (line.length == 3) horizontalContainer.firstChild.style.minWidth = '50.2%'; // used to make the '0' button get 50% of the space
 });
 
 let previousUserBtn = '+';
 let userClickedEquals;
-function getInput() {
-    const userBtnInput = `${this.textContent}`;
+function getInput(userBtnInput) {
+    //const userBtnInput = `${this.textContent}`;
     
 
-    if (userBtnInput == 'AC'){
+    if (userBtnInput == 'C'){
         display.textContent = '';
     }
     else if(userBtnInput == '←'){
@@ -45,13 +45,13 @@ function getInput() {
         else amount = 1;  
         display.textContent = display.textContent.slice(0, display.textContent.length - amount)
     }
-    else if(userBtnInput == 'R') {
+    else if(userBtnInput == '!') {
         let splitted = display.textContent.split(' ');
         splitted[splitted.length - 1] = -splitted[splitted.length - 1];
         display.textContent = splitted.join(' ');
     }
     else if (userBtnInput == '='){
-        if (isNaN(previousUserBtn) && previousUserBtn != '.' && previousUserBtn != '←' && previousUserBtn != 'R') return; // if the last click was '+, -, etc
+        if (isNaN(previousUserBtn) && previousUserBtn != '.' && previousUserBtn != '←' && previousUserBtn != '!') return; // if the last click was '+, -, etc
         operations = display.textContent.split(' ');
         userClickedEquals = true;
         display.textContent = showResults(operations);
@@ -59,7 +59,7 @@ function getInput() {
         return;
     } 
     //If the button clicked is not a number or a dot AND the previous buton clicked was a number or a dot. The last part is to prevent "+ + or - - -, etc"
-    else if ((isNaN(userBtnInput) && userBtnInput!='.') && (!isNaN(previousUserBtn) || previousUserBtn == '.' || previousUserBtn == '←' || previousUserBtn == 'R')) { 
+    else if ((isNaN(userBtnInput) && userBtnInput!='.') && (!isNaN(previousUserBtn) || previousUserBtn == '.' || previousUserBtn == '←' || previousUserBtn == '!')) { 
         display.textContent += ` ${userBtnInput} `
     }
     else if (userBtnInput == '.'){
@@ -79,7 +79,27 @@ function getInput() {
     console.log(operations);
     previousUserBtn = userBtnInput;
 }   
+/*------------------------------------------Keyboard Input------------------------------------------*/
+document.addEventListener('keydown', event => {
+    if (event.repeat) return;
+    let eventValue = event.key;
+    //console.log(eventValue == 'Enter');
+    switch (eventValue) {
+        case 'Backspace':
+            eventValue = '←';
+            break;
+        case 'Enter':
+            eventValue = '=';
+        case 'c':
+            eventValue = eventValue.toUpperCase();
+    }
 
+    options.forEach(option => {
+
+        if (option.includes(eventValue)) getInput(eventValue);
+    });
+    
+});
 function showResults(operations) {
     function calculationAlgo(a, b) { 
         for (let i = 1; i < operations.length; i += 2){
