@@ -104,5 +104,5 @@ function showResults(operations) {
     calculationAlgo('+', '-');
     operations = operations.filter(item => item);
 
-    return Math.round(operations[0]*100)/100;
+    return Math.round(operations[0]*10000)/10000;
 }
