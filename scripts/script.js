@@ -95,7 +95,6 @@ document.addEventListener('keydown', event => {
     }
 
     options.forEach(option => {
-
         if (option.includes(eventValue)) getInput(eventValue);
     });
     
