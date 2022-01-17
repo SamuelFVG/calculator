@@ -4,7 +4,7 @@ const mainContainer = document.getElementById('main-button-container');
     Add keyboard functionality
 */
 
-
+const orangeOptions = ['/', '*', '-', '+', '='];
 const options =  [
     ['C', '←', '!', '/'],
     ['1',  '2', '3', '*'],
@@ -23,11 +23,14 @@ options.forEach(line => {
         btn.classList.add('calculator-button');
         btn.textContent = option;
         horizontalContainer.appendChild(btn);
+        if (!isNaN(option) || option == '.') btn.classList.add('number-button');
+        else if (orangeOptions.includes(option)) btn.classList.add('orange-button');
+        else btn.classList.add('grayer-button')
 
         btn.addEventListener('click', event => getInput(event.target.textContent));
     });
     
-    if (line.length == 3) horizontalContainer.firstChild.style.minWidth = '50.2%'; // used to make the '0' button get 50% of the space
+    if (line.length == 3) horizontalContainer.firstChild.style.minWidth = '49.9%'; // used to make the '0' button get 50% of the space
 });
 
 let previousUserBtn = '+';

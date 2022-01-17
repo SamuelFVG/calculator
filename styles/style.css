@@ -10,41 +10,61 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #aaaaaa;
+    background-color: #cccccc;
 }
 
 main{
     display: flex;
     flex-direction: column;
-
-    width: 27%;
-    height: 60%;
-    background-color: white;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #2b2d2f;
+    width: 23%;
+    height: 63%;
+    background-color: #2b2d2f;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);;
 }
 #input-box{
     height: 30%;
-    border: 1px solid black;
-    background-color: blanchedalmond;
+    background-color: #2b2d2f;
 
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
 }
+#display{
+    font-family: sans-serif;
+    color: white;
+    font-size: 1.6rem;
+    padding: 0 20px 20px 0;
+}
+
 #main-button-container{
     height: 70%;
-    border: 1px solid black;
-    background-color: aliceblue;
-
+    gap: 1px;
     display: flex;
     flex-direction: column; 
+    
 }
 .horizontal-container{
     flex: 1;
-
+    gap: 1px;
     display: flex
 }
 .horizontal-container > *{
     flex: 1;
 }
-
-
+button {
+    font-size: 1.25rem;
+    border: none;
+    color: white;
+}
+.number-button {
+    background-color: #707275;
+}
+.orange-button {
+    background-color: #ff9f0c;
+}
+.grayer-button {
+    background-color: #4e5153;
+}
