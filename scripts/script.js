@@ -1,7 +1,6 @@
 const display = document.getElementById('display');
 const mainContainer = document.getElementById('main-button-container');
 /*
-    Fazer o que tem no display apagar quando o user escreve algo logo depois de receber o resultado do seu cálculo
     Impossibilitar o user de tentar receber o resultado quando ele clica no = em coias incompletas (ex: 1 + 2 +)
     Fazer a diminuição do tamanho do output quando tem casas decimais
     Fazer a função de mudar o sinal de um número
@@ -35,8 +34,10 @@ options.forEach(line => {
 });
 
 let previousUserBtn = '+';
+let userClickedEquals;
 function getInput() {
     const userBtnInput = `${this.textContent}`;
+    
 
     if (userBtnInput == 'AC'){
         display.textContent = '';
@@ -48,25 +49,30 @@ function getInput() {
         display.textContent = display.textContent.slice(0, display.textContent.length - amount)
     }
     else if (userBtnInput == '='){
+        if (isNaN(previousUserBtn) && previousUserBtn != '.' && previousUserBtn != '←') return; // if the last click was '+, -, etc
         operations = display.textContent.split(' ');
+        userClickedEquals = true;
         display.textContent = showResults(operations);
         previousUserBtn = display.textContent;
         return;
     } 
     //If the button clicked is not a number or a dot AND the previous buton clicked was a number or a dot. The last part is to prevent "+ + or - - -, etc"
-    else if ((isNaN(userBtnInput) && userBtnInput!='.') && (!isNaN(previousUserBtn) || previousUserBtn == '.')) { 
+    else if ((isNaN(userBtnInput) && userBtnInput!='.') && (!isNaN(previousUserBtn) || previousUserBtn == '.' || previousUserBtn == '←')) { 
         display.textContent += ` ${userBtnInput} `
     }
     else if (userBtnInput == '.'){
+        if (userClickedEquals) display.textContent = ''; // replace the number that was on the screen if the user doesn't use it
         let currentNumber = display.textContent.split(' ').pop(); //get the number the user is currently in
         if (currentNumber.includes('.')) return; // if that number has already a dot, do not add another one
         if (currentNumber == '') display.textContent += 0.; // if there's nothing before the dot, add a 0
         display.textContent += '.';
     }
     else if (!isNaN(userBtnInput)){ 
+        if (userClickedEquals) display.textContent = '';
         display.textContent += userBtnInput;
     }
 
+    userClickedEquals = false;
     operations = display.textContent.split(' ');
     console.log(operations);
     previousUserBtn = userBtnInput;
