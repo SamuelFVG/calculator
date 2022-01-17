@@ -91,8 +91,6 @@ document.addEventListener('keydown', event => {
         case 'Backspace':
             eventValue = '←';
             break;
-        case 'Enter':
-            eventValue = '=';
         case 'c':
             eventValue = eventValue.toUpperCase();
     }

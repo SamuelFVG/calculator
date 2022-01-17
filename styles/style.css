@@ -58,6 +58,14 @@ button {
     font-size: 1.25rem;
     border: none;
     color: white;
+    outline: none;
+    /*outline: none;*/
+}
+button:active{
+    transform: scale(0.99);
+}
+button:hover{
+    filter: brightness(90%);
 }
 .number-button {
     background-color: #707275;
