@@ -1,19 +1,35 @@
 const display = document.getElementById('display');
 const buttons = document.getElementById('buttons-container');
-let amountOfItems = 4;
 
-for (let i = 0; i < 5; i++) {
-    const row = document.createElement('div');
-    row.classList.add('parent-row')
+const options = [
+    ['C', '←', '±', 'x'],
+    [9, 8, 7, '÷'],
+    [6, 5, 4, '+'],
+    [3, 2, 1, '-'],
+    [0, '.', '=']
+];   
+
+const operations = 'C←±x÷+-='; 
+
+
+function calculate(event) {
+    if (!operations.includes(this.textContent)) display.textContent = this.textContent;
+}
+
+
+options.forEach(line => {
+    const row = document.createElement('div'); //parent row container
+    row.classList.add('parent-row');
     buttons.appendChild(row);
 
-    if (i == 4) {
-        amountOfItems = 3;
-        row.classList.add('last-row');
-    }
-    for (let j = 0; j < amountOfItems; j++) {
+    line.forEach(option => {
         const button = document.createElement('button');
         button.classList.add('btn');
+        if (option == 0) button.style.minWidth = '50%';
+         
+        button.textContent = option;
+        button.addEventListener('click', calculate);
+
         row.appendChild(button);
-    }
-}
+    });
+});
