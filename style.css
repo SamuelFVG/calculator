@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#calculator {
+    height: 60%;
+    width: 25%;
+}
+#display {
+    height: 30%;
+    background-color: #e0e0e0;
+}
+#buttons-container {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.parent-row {
+    flex: 1;
+
+    display: flex;
+}
+.last-row > button:first-child {
+    min-width: 50%;
+}
+
+.btn {
+    flex: 1;
+}
