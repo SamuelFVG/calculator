@@ -44,14 +44,13 @@ function evaluate(arr) {
     return arr;
 }
 let clickedEqual = 0;
-function calculate() {
+function calculate(option) {
     if (display.textContent == 'Do not divide by 0.') {
         display.textContent = '';
     }
     if (clickedEqual == '3') clickedEqual = 0;
 
-    let option = this.textContent,
-        textArr = display.textContent.split(' '), 
+    let textArr = display.textContent.split(' '), 
         len = textArr.length - 1;
     
     switch (true) {
@@ -126,8 +125,24 @@ options.forEach(line => {
         if (option == 0) button.style.minWidth = '50%';
 
         button.textContent = option;
-        button.addEventListener('click', calculate);
+        button.addEventListener('click', e => calculate(e.target.textContent));
 
         row.appendChild(button);
+    });
+});
+
+document.addEventListener('keydown', e => {
+    keyChoice = e.key;
+
+    if (keyChoice == '*') keyChoice = 'x';
+    else if (keyChoice == '/') keyChoice = '÷';
+    else if (keyChoice == 'c') keyChoice = 'C';
+    else if (keyChoice == 'Backspace') keyChoice = '←';
+    else if (keyChoice == '!') keyChoice = '±';
+
+    options.forEach(line =>{
+        line.forEach(op =>{
+            if(keyChoice == op) calculate(keyChoice);
+        });
     });
 });
