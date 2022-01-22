@@ -15,10 +15,15 @@ body {
     height: 60%;
     width: 25%;
 }
-#display {
+#display-container{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+
     height: 30%;
     background-color: #e0e0e0;
 }
+
 #buttons-container {
     height: 70%;
     display: flex;
