@@ -40,7 +40,7 @@ function evaluate(arr) {
     });
     
     if (arr[0] == 'Infinity' || arr[0] == '-Infinity' || isNaN(arr[0])) arr[0] = 'Do not divide by 0.';
-    else arr[0] = Math.floor(arr[0]*10000)/10000;
+    else arr[0] = Math.floor(arr[0]*100)/100;
     return arr;
 }
 let clickedEqual = 0;

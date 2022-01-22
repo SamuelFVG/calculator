@@ -57,7 +57,7 @@ body {
     border: 0;
     background-color: #e0e0e0;
     font-family: sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 button:active {
     filter: invert(75%);
