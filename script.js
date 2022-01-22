@@ -123,7 +123,8 @@ options.forEach(line => {
         const button = document.createElement('button');
         button.classList.add('btn');
         if (option == 0) button.style.minWidth = '50%';
-
+        if (line.indexOf(option) == line.length - 1) button.classList.add('last-right-btn');
+        if (options.indexOf(line) == 0) button.classList.add('first-top-btn');
         button.textContent = option;
         button.addEventListener('click', e => calculate(e.target.textContent));
 
