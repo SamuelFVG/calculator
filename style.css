@@ -59,9 +59,6 @@ body {
     font-family: sans-serif;
     font-size: 1.25rem;
 }
-button:active {
-    filter: invert(75%);
-}
 .btn:hover {
     filter: brightness(95%);
 }
